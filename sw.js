@@ -1,4 +1,4 @@
-const CACHE_NAME = "vocab-progress-atlas-v2";
+const CACHE_NAME = "vocab-progress-atlas-v3";
 const ASSETS = [
   "./",
   "./index.html",
@@ -6,6 +6,7 @@ const ASSETS = [
   "./app.js",
   "./manifest.webmanifest",
   "./icon.svg",
+  "./sw.js",
 ];
 
 self.addEventListener("install", (event) => {
@@ -33,19 +34,35 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request)
+        .then((networkResponse) => {
+          const clone = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put("./", clone);
+            cache.put("./index.html", clone);
+          });
+          return networkResponse;
+        })
+        .catch(async () => {
+          const cachedPage = await caches.match(event.request);
+          return cachedPage || caches.match("./index.html");
+        }),
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-
-      return fetch(event.request)
+      const networkRequest = fetch(event.request)
         .then((networkResponse) => {
           const clone = networkResponse.clone();
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
           return networkResponse;
-        })
-        .catch(() => cachedResponse);
+        });
+
+      return cachedResponse || networkRequest;
     }),
   );
 });
