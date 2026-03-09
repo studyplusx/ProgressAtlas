@@ -4,3 +4,4 @@ certs/
 *.pyo
 *.pyd
 vocab-progress-*.json
+token
