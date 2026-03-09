@@ -156,6 +156,22 @@ button {
   padding: 22px;
 }
 
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink);
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  color: rgba(95, 105, 95, 0.78);
+}
+
 .controls-panel {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -170,6 +186,82 @@ button {
 
 .toolbar-actions {
   align-self: end;
+}
+
+.sync-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.sync-note,
+.sync-meta {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.sync-form {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.sync-field {
+  display: grid;
+  gap: 8px;
+}
+
+.sync-field span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.sync-token-field {
+  grid-column: 1 / -1;
+}
+
+.sync-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.sync-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.sync-badge[data-state="ready"] {
+  background: rgba(34, 79, 103, 0.08);
+  border-color: rgba(34, 79, 103, 0.2);
+  color: var(--accent);
+}
+
+.sync-badge[data-state="syncing"] {
+  background: rgba(210, 139, 31, 0.12);
+  border-color: rgba(210, 139, 31, 0.28);
+  color: #8c5f15;
+}
+
+.sync-badge[data-state="ok"] {
+  background: rgba(42, 143, 99, 0.14);
+  border-color: rgba(42, 143, 99, 0.28);
+  color: var(--correct);
+}
+
+.sync-badge[data-state="error"] {
+  background: rgba(189, 77, 55, 0.12);
+  border-color: rgba(189, 77, 55, 0.24);
+  color: var(--wrong);
 }
 
 .segmented {
@@ -637,6 +729,10 @@ button {
   .questions-grid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
+
+  .sync-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 920px) {
@@ -649,7 +745,8 @@ button {
   }
 
   .controls-panel,
-  .overview-body {
+  .overview-body,
+  .sync-form {
     grid-template-columns: 1fr;
   }
 
@@ -684,6 +781,10 @@ button {
   }
 
   .toolbar-actions .action-button {
+    flex: 1 0 auto;
+  }
+
+  .sync-actions .action-button {
     flex: 1 0 auto;
   }
 
@@ -772,6 +873,11 @@ button {
 
   .mobile-jump-button {
     width: 100%;
+  }
+
+  .sync-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 

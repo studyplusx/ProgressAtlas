@@ -52,6 +52,46 @@
           </div>
         </section>
 
+        <section class="panel sync-panel">
+          <div class="panel-header panel-header-spread">
+            <div>
+              <p class="panel-kicker">Cloud Sync</p>
+              <h2>GitHub 自動同期</h2>
+            </div>
+            <span id="sync-status-badge" class="sync-badge">未設定</span>
+          </div>
+          <p class="sync-note">
+            GitHub の fine-grained personal access token を使って、このリポジトリの `sync-data` ブランチへ進行を保存します。
+            一度設定すれば、以後は各端末で自動同期されます。
+          </p>
+          <div class="sync-form">
+            <label class="sync-field">
+              <span>Owner</span>
+              <input id="sync-owner" type="text" autocomplete="username" spellcheck="false" />
+            </label>
+            <label class="sync-field">
+              <span>Repository</span>
+              <input id="sync-repo" type="text" spellcheck="false" />
+            </label>
+            <label class="sync-field">
+              <span>Branch</span>
+              <input id="sync-branch" type="text" spellcheck="false" />
+            </label>
+            <label class="sync-field sync-token-field">
+              <span>Token</span>
+              <input id="sync-token" type="password" placeholder="GitHub token" autocomplete="off" spellcheck="false" />
+            </label>
+          </div>
+          <div class="sync-actions">
+            <button id="save-sync-settings" class="action-button">同期設定を保存</button>
+            <button id="sync-now" class="action-button">今すぐ同期</button>
+            <button id="disconnect-sync" class="text-button" type="button">この端末の同期設定を削除</button>
+          </div>
+          <p class="sync-meta" id="sync-meta">
+            Token はこの端末のブラウザにだけ保存されます。`Contents: Read and write` 権限の token を使ってください。
+          </p>
+        </section>
+
         <section class="stats-grid" id="stats-grid" aria-label="進行統計"></section>
 
         <section class="insight-grid">
