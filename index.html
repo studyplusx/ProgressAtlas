@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4efe3" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Progress Atlas" />
+    <title>英単語帳 Progress Atlas</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Vocabulary Progress Atlas</p>
+          <h1>英単語帳の1000問を、迷わず進める。</h1>
+          <p class="hero-text">
+            〇、△、✕で1問ずつ記録しながら、正解数、記録率、苦手分布、100問ごとの偏りまで可視化できます。
+          </p>
+        </div>
+        <div class="hero-panel">
+          <span class="hero-tag">自動保存</span>
+          <div class="hero-focus">
+            <p class="hero-focus-label">次に見るべきポイント</p>
+            <strong id="focus-title">未記録の問題から着手</strong>
+            <span id="focus-detail">最初の未記録問題を探しています。</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="panel controls-panel">
+          <div class="toolbar-group">
+            <span class="toolbar-label">記録ブラシ</span>
+            <div class="segmented" id="brush-picker" role="toolbar" aria-label="記録ブラシ"></div>
+          </div>
+          <div class="toolbar-group">
+            <span class="toolbar-label">表示フィルタ</span>
+            <div class="segmented" id="filter-picker" role="toolbar" aria-label="表示フィルタ"></div>
+          </div>
+          <div class="toolbar-group toolbar-actions">
+            <button id="jump-next" class="action-button">次の未記録へ</button>
+            <button id="import-data" class="action-button">データ読み込み</button>
+            <button id="export-data" class="action-button">データ書き出し</button>
+            <button id="reset-data" class="action-button danger">初期化</button>
+            <input id="import-file" type="file" accept="application/json,.json" hidden />
+          </div>
+        </section>
+
+        <section class="stats-grid" id="stats-grid" aria-label="進行統計"></section>
+
+        <section class="insight-grid">
+          <article class="panel overview-panel">
+            <div class="panel-header">
+              <div>
+                <p class="panel-kicker">Overview</p>
+                <h2>全体進捗</h2>
+              </div>
+              <span id="updated-at" class="panel-meta">更新履歴を読み込み中</span>
+            </div>
+            <div class="overview-body">
+              <div class="donut-wrap">
+                <div class="donut-chart" id="donut-chart" aria-label="進捗ドーナツチャート">
+                  <div class="donut-hole">
+                    <strong id="completion-rate">0%</strong>
+                    <span>記録率</span>
+                  </div>
+                </div>
+              </div>
+              <div class="legend-list" id="legend-list"></div>
+            </div>
+          </article>
+
+          <article class="panel block-panel">
+            <div class="panel-header">
+              <div>
+                <p class="panel-kicker">Distribution</p>
+                <h2>100問ごとの進み具合</h2>
+              </div>
+              <button id="clear-block-filter" class="text-button" hidden>ブロック選択を解除</button>
+            </div>
+            <div id="block-summary" class="block-summary"></div>
+          </article>
+
+          <article class="panel insight-panel">
+            <div class="panel-header">
+              <div>
+                <p class="panel-kicker">Insight</p>
+                <h2>進め方のヒント</h2>
+              </div>
+            </div>
+            <div id="insight-cards" class="insight-cards"></div>
+          </article>
+
+          <article class="panel recent-panel">
+            <div class="panel-header">
+              <div>
+                <p class="panel-kicker">Recent</p>
+                <h2>直近の記録</h2>
+              </div>
+            </div>
+            <ol id="recent-list" class="recent-list"></ol>
+          </article>
+        </section>
+
+        <section class="panel questions-panel">
+          <div class="panel-header panel-header-spread">
+            <div>
+              <p class="panel-kicker">Questions</p>
+              <h2>問題一覧</h2>
+            </div>
+            <div class="panel-meta-group">
+              <span id="current-scope" class="panel-meta">全1000問を表示中</span>
+              <span class="panel-meta">数字キー 1 2 3 0 でブラシ切替</span>
+            </div>
+          </div>
+          <p class="questions-note">
+            セルをクリックすると、選択中のブラシで保存します。未記録に戻したい場合は「未」を選択してください。
+          </p>
+          <div id="range-tabs" class="range-tabs" aria-label="100問区切りナビ"></div>
+          <div id="questions-grid" class="questions-grid" aria-label="問題一覧"></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="mobile-dock" aria-label="モバイル操作バー">
+      <div class="mobile-dock-inner">
+        <div class="segmented mobile-brush-picker" id="mobile-brush-picker" role="toolbar" aria-label="モバイル記録ブラシ"></div>
+        <button id="mobile-jump-next" class="action-button mobile-jump-button">未記録へ</button>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

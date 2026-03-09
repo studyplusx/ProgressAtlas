@@ -1,0 +1,18 @@
+{
+  "name": "英単語帳 Progress Atlas",
+  "short_name": "Progress Atlas",
+  "description": "英単語帳1000問の進行を〇、△、✕で記録できる学習ダッシュボード",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4efe3",
+  "theme_color": "#f4efe3",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

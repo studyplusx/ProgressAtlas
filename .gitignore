@@ -1,0 +1,6 @@
+__pycache__/
+certs/
+*.pyc
+*.pyo
+*.pyd
+vocab-progress-*.json
