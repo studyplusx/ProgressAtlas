@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-03-14T19:44:53.273Z",
+  "updatedAt": "2026-03-14T19:55:58.565Z",
   "items": [
     {
       "id": 1,
@@ -2024,8 +2024,8 @@
     },
     {
       "id": 405,
-      "status": "blank",
-      "updatedAt": null
+      "status": "partial",
+      "updatedAt": "2026-03-14T19:55:57.043Z"
     },
     {
       "id": 406,
