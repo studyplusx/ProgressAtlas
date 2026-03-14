@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-03-14T17:12:30.317Z",
+  "updatedAt": "2026-03-14T17:20:56.161Z",
   "items": [
     {
       "id": 1,
@@ -1324,13 +1324,13 @@
     },
     {
       "id": 265,
-      "status": "blank",
-      "updatedAt": null
+      "status": "partial",
+      "updatedAt": "2026-03-14T17:20:53.552Z"
     },
     {
       "id": 266,
-      "status": "blank",
-      "updatedAt": null
+      "status": "partial",
+      "updatedAt": "2026-03-14T17:20:53.726Z"
     },
     {
       "id": 267,
@@ -1344,8 +1344,8 @@
     },
     {
       "id": 269,
-      "status": "blank",
-      "updatedAt": null
+      "status": "partial",
+      "updatedAt": "2026-03-14T17:20:54.629Z"
     },
     {
       "id": 270,
